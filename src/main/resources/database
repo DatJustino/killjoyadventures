@@ -1,7 +1,10 @@
-spring.datasource.url=jdbc:mysql://127.0.0.1:3306/${}
+spring.datasource.url=jdbc:${} = mysql://127.0.0.1:3306/databasenavn
 spring.datasource.username=${}
 spring.datasource.password=${}
 
 spring.jpa.hibernate.ddl-auto=update
 
 spring.jpa.show-sql=true
+
+Set env variables:
+Run -> Edit configurations -> modify options -> environment variables
