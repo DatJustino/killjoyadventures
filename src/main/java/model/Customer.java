@@ -8,7 +8,7 @@ import jakarta.persistence.Table;
 @Entity
 public class Customer {
     @Id
-    @Column(name = "customerid", length = 4)
+    @Column(length = 4)
     private String customerId;
 
     public String getCustomerId() {

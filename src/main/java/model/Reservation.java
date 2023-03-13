@@ -7,7 +7,7 @@ import jakarta.persistence.Id;
 @Entity
 public class Reservation {
     @Id
-    @Column(name = "reservationid", length = 4)
+    @Column(length = 4)
     private String reservationId;
 
     public String getReservationId() {

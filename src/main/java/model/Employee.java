@@ -7,7 +7,7 @@ import jakarta.persistence.Id;
 @Entity
 public class Employee {
     @Id
-    @Column(name = "employeeid", length = 4)
+    @Column(length = 4)
     private String employeeId;
 
     public String getEmployeeId() {
