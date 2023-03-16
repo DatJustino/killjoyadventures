@@ -1,10 +1,7 @@
 package com.killjoy.killjoyadventures.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -23,5 +20,5 @@ public class Activity {
 
     @OneToMany(mappedBy = "activity")
     @JsonBackReference
-    private Set<ActRes> actResses = new HashSet<>();
+    private Set<Timeslot> timeslots = new HashSet<>();
 }
