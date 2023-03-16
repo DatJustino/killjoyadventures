@@ -9,43 +9,91 @@
     <link rel="stylesheet" href="../styles/mystyle.css">
 </head>
 <body>
-<div>
-<!--    Image Banner with map, tænker at det skal aktivere et link til det Aktivity som man trykker på, og så kommer der lidt
-    om aktiviteten og mulighed for booking?-->
-    <img class="imgbanner" src="../imgs/customBanner.png"
+<div class="banner">
+    <!--    Image Banner with map, tænker at det skal aktivere et link til det Aktivity som man trykker på, og så kommer der lidt
+        om aktiviteten og mulighed for booking?-->
+    <img class="bannerimg" src="../imgs/customBanner.png"
          alt="Custom Banner picturing sumo wrestling, Go Kart, Golfing and Paintball Activities" usemap="#bannerMap">
     <map name="bannerMap">
-        <area shape="circle" coords="200,200,200" alt="Sumo Actvity" href="activity-site.html">
-        <area shape="circle" coords="600,200,200" alt="Gokart Activity" href="activity-site.html">
-        <area shape="circle" coords="1000,200,200" alt="Mini Golf Actvity" href="activity-site.html">
-        <area shape="circle" coords="1400,200,200" alt="Paintball Activity" href="activity-site.html">
+        <area shape="circle" coords="200,200,200" alt="Sumo Actvity" href="activity-site.html"
+              title="Go to the Sumo activity description">
+        <area shape="circle" coords="600,200,200" alt="Gokart Activity" href="activity-site.html"
+              title="Go to the Go-Kart activity description">
+        <area shape="circle" coords="1000,200,200" alt="Mini Golf Actvity" href="activity-site.html"
+              title="Go to the Mini-Golf acvitity description">
+        <area shape="circle" coords="1400,200,200" alt="Paintball Activity" href="activity-site.html"
+              title="Go to the Paintball activity description">
+        <area shape="circle" coords="1800,200,200" alt="Swimming Activity" href="activity-site.html"
+              title="Go to the Swimming activity description">
     </map>
 </div>
 <nav>
-<ul class="nav-ul">
-    <li class="nav-li"><a href="index.html">Home</a></li>
-    <li class="nav-li"><a href="activity-site.html">Activities!</a></li>
-    <li class="nav-li"><a href="about.html">About</a></li>
-    <li class="nav-li"><a href="about.html">About our Activities (PLACEHOLDER FOR MAYBE)</a></li>
-</ul>
+    <ul class="nav-ul">
+        <li class="nav-li"><a href="index.html" title="Go to the homepage">Home</a></li>
+        <li class="nav-li"><a href="activity-site.html" title="Go to the activities page">Activities!</a></li>
+        <li class="nav-li"><a href="about.html" title="Go to the about page">About</a></li>
+        <li class="nav-li"><a href="about.html">About our Activities (PLACEHOLDER FOR MAYBE)</a></li>
+    </ul>
 </nav>
 <div class="flex-container">
     <header class="header">Welcome To KillJoy Adventures</header>
-    <aside class="aside"><img src="../imgs/8hR45GmOiItBanwb3Yzl--1--t3urd.jpg" height="160"
-                                                 width="160"/></aside>
+    <aside class="aside"><img src="../imgs/8hR45GmOiItBanwb3Yzl--1--t3urd.jpg"/></aside>
     <article class="main">
         <p>KillJoy Adventures are perfect for the people who are looking for new adventures with their partners
-        , friends or the people you hate!</p>
+            , friends or the people you hate!</p>
         <h2>We provide the following services:</h2>
         <ul>
             <li>Go-Kart</li>
             <li>Paintball</li>
-            <li>Sumo-Wrestling</li>
+            <li>Sumo Wrestling</li>
             <li>Mini-Golf</li>
+            <li>Laser Tag</li>
             <li><a href="activity-site.html">Click here to go to our <em>Activity Page!</em></a></li>
         </ul>
     </article>
-    <footer class="footer">Footer</footer>
+
+
+    <footer class="footer">
+        <div class="footer_address">
+            <h1 class="footer_logo">KillJoy Adventures, a company dedicated to hedonism</h1>
+            <h2>Contact us at</h2>
+            <address>
+                Borgergade 12, 1300 Kbh. K<br>
+                <a class="footer_btn" href="mailto:info@killjoyadventures.com">Email Us</a>
+            </address>
+        </div>
+        <ul class="footer_nav">
+            <li class="nav_item">
+                <h2 class="nav_title">Partners</h2>
+                <ul class="nav_ul">
+                    <li><a href="#">Collaborators</a></li>
+                    <li><a href="#">Sponsors</a></li>
+                </ul>
+            </li>
+
+            <li class="nav_item nav_item-extra">
+                <h2 class="nav_title">Activities</h2>
+
+                <ul class="nav_ul nav_ul-extra">
+                    <li><a href="#">Go-Kart!</a></li>
+                    <li><a href="#">Mini-Golf</a></li>
+                    <li><a href="#">Paintball</a></li>
+                    <li><a href="#">Sumo-Wrestling</a></li>
+                    <li><a href="#">Laser Tag</a></li>
+                </ul>
+            </li>
+            <li class="nav_item">
+                <h2 class="nav_title">Legal</h2>
+                <ul class="nav__ul">
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Use</a></li>
+                </ul>
+            </li>
+        </ul>
+        <div class="legal">
+            <p>&copy; 2023 KillJoy Adventures. Maybe some rights reserved.</p>
+        </div>
+    </footer>
 </div>
 </body>
 </html>
