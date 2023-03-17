@@ -3,7 +3,8 @@ const urlActivity = "http://localhost:8080/activity" //skal hente fra egen datab
 let activityList = []
 const ddSelectActivity = document.getElementById("ddSelectActivity")
 
-window.addEventListener("load", loadActivity)
+document.addEventListener("DOMContentLoaded", loadActivity) //ændret til document DOMContentLoaded
+//frem for window 'load'
 
 async function loadActivity(){
     activityList = await fetchAny(urlActivity);
@@ -24,5 +25,8 @@ function fillActivityDropDown(activity) {
 function fetchAny(url) {
     console.log(url)
     return fetch(url).then((response) => response.json())
+    //fetch sender http get request til url og får promise objekt. then kaldes anonym funktion
+    //som er en callback funktion fordi der går tid før den giver response
+    //den laver reponse's body til json. Response kan hedde hvad som helst
 }
 

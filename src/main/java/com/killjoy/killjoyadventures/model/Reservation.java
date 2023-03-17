@@ -21,4 +21,8 @@ public class Reservation {
     @ManyToOne
     @JoinColumn(name = "timeslotId", referencedColumnName = "timeslotId")
     private Timeslot timeslot;
+
+    @ManyToOne
+    @JoinColumn(name = "customerId", referencedColumnName = "customerId")
+    private Customer customer;
 }
