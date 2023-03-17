@@ -17,6 +17,7 @@ public class Activity {
     @Id
     @Column(length = 4)
     private String activityId;
+    private String activityName;
 
     @OneToMany(mappedBy = "activity")
     @JsonBackReference

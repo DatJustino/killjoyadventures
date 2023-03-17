@@ -83,8 +83,7 @@ body {
     grid-template-rows: auto;
     font-size: 14px;
     background-color: #f4f4f4;
-    align-items: start;
-    min-height: 100vh;
+    min-height: 10px;
 }
 
 .footer {
@@ -194,7 +193,7 @@ body {
         flex: 1;
     }
 
-    .nav__item--extra {
+    .nav_item-extra {
         flex-grow: 2;
     }
 

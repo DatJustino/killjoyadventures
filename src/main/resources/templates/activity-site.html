@@ -1,37 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="da-dk">
 <head>
     <meta charset="UTF-8">
     <title>Activities at KillJoy Adventures!</title>
     <meta name="description" content="Adventure Agency, Fun with Friends, Events">
-    <meta name="keywords" content="Adventures, Paintball, Golf">
+    <meta name="keywords" content="Adventures, Paintball, Mini Golf, Laser Tag,">
     <meta name="author" content="I.Justino, V. Bistrup">
     <link rel="stylesheet" href="../styles/mystyle.css">
 </head>
 <body>
-<div>
+<header>
     <img class="imgbanner" src="../imgs/customBanner.png"
          alt="Custom Banner picturing sumo wrestling, Go Kart, Golfing and Paintball Activities">
-</div>
-<nav>
-    <ul class="nav-ul">
-        <li class="nav-li"><a href="index.html">Home</a></li>
-        <li class="nav-li"><a href="activity-site.html">Adventures</a></li>
-        <li class="nav-li"><a href="about.html">About</a></li>
-    </ul>
-</nav>
-<label>Vælg aktivitet</label>
-<br>
-<select id="ddSelectActivity">
-    <option value="" selected="data-default" disabled="true">Aktiviteter</option>
-    <!--selected default gør at den står først og disabled gør at brugeren ikke kan vælge den
-    Tænk dog over om en dropdown SKAL vælges eller om der skal være et tom felt som kan submittes
-    skal der overhoved være en placeholder-->
+    <nav>
+        <ul class="nav-ul">
+            <li class="nav-li"><a href="index.html">Home</a></li>
+            <li class="nav-li active"><a href="activity-site.html">Adventures</a></li>
+            <li class="nav-li"><a href="about.html">About</a></li>
+        </ul>
+    </nav>
+</header>
 
-    <!--Måske en "Vælg aktivitet" placeholder?-->
-</select>
+<main>
+    <form action="http://localhost:8080/saveactivity" method="POST" id="activityForm">
+        <div>
+            <label for="ddSelectTime">Start Time</label>
+            <select id="ddSelectTime" name="startTime" required>
+                <option value="" selected disabled hidden>Choose start time</option>
+            </select>
+        </div>
+        <div>
+            <label for="ddSelectActivity">Activity</label>
+            <select id="ddSelectActivity" name="activity" required>
+                <option value="" selected disabled hidden>Choose activity</option>
+            </select>
+        </div>
+        <button type="submit" id="pbPostActivity">Apply for timeslot</button>
+    </form>
+</main>
 
+<footer>
+    <script src="../js/fetchActivity.js"></script>
+</footer>
 
-<script src="../js/fetchActivity.js"></script>
 </body>
 </html>
