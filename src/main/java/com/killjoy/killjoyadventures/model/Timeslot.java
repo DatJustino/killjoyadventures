@@ -27,7 +27,7 @@ public class Timeslot { //intermediate table
     @Column(length = 4)
     private String timeslotId;
     @JsonFormat(pattern="dd HH:mm")
-    @Column(name = "timeslotstart")
+    @Column(name = "timeSlotStart")
     private LocalDateTime timeSlotStart;
     @ManyToOne
     @JoinColumn(name = "activityId", referencedColumnName = "activityId") //sidste SKAL hedde det PK er for activity

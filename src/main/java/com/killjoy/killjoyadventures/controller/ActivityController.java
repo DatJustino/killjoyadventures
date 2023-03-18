@@ -32,8 +32,9 @@ public class ActivityController {
 
     @PostMapping("/saveactivity")
     @ResponseStatus(HttpStatus.CREATED)
-    public Activity postActivity(@RequestBody Activity activity) {
+    public Activity postActivity(@RequestBody Activity activity, Timeslot timeslot) {
         System.out.println(activity);
+        timeslotRepo.save(timeslot);
         return activityRepo.save(activity);
     }
 }

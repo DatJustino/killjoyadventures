@@ -7,8 +7,11 @@ let activityTimeList = [];
 let body = {};
 
 // frem for window 'load'
-window.addEventListener("load", loadActivity, loadActivityTime);
-document.addEventListener("DOMContentLoaded", createFormEventListener, loadActivity, loadActivityTime); //ændret til document DOMContentLoaded
+/*window.addEventListener("load", loadActivity);
+window.addEventListener("load", loadActivityTime);*/
+document.addEventListener("DOMContentLoaded", createFormEventListener); //ændret til document DOMContentLoaded
+document.addEventListener("DOMContentLoaded", loadActivityTime); //ændret til document DOMContentLoaded
+document.addEventListener("DOMContentLoaded", loadActivity); //ændret til document DOMContentLoaded
 
 const ddSelectTime = document.getElementById("ddSelectTime");
 const ddSelectActivity = document.getElementById("ddSelectActivity");
@@ -24,7 +27,7 @@ async function loadActivity() {
 async function loadActivityTime() {
     activityTimeList = await fetchAny(urlActivityTime);
     console.log(activityTimeList);
-    ddSelectTime.forEach(fillTimeDropDown);
+    activityTimeList.forEach(fillTimeDropDown);
 }
 
 function fillActivityDropDown(activity) {
@@ -38,13 +41,9 @@ function fillActivityDropDown(activity) {
 
 function fillTimeDropDown(activityTime) {
     const el2 = document.createElement("option");
-    console.log(el2);
     el2.value = activityTime.timeSlotStart;
     el2.textContent = activityTime.timeSlotStart;
     console.log(activityTime.timeSlotStart);
-    console.log(activityTime.time_Slot_Start);
-    console.log(activityTime.timeslotstart);
-
     ddSelectTime.appendChild(el2);
 }
 
@@ -55,28 +54,32 @@ function createFormEventListener() {
 
 async function handleFormSubmit(event) {
     //Vi handler submit knappen og eventet i stedet for default html behaviour
-    event.preventDefault();
-    const form = event.currentTarget;
-    const url = form.action;
-    console.log(form);
-    console.log(url);
-    console.log(form === activityForm);
-    try {
+        event.preventDefault();
+        const form = event.target;
+        const url = form.action;
         const formData = new FormData(form);
-        console.log(formData);
-        const responseData = await postFormData(url, formData);
-    } catch (error) {
-        alert(error.message);
-        console.log(error);
+        fetch(url, {
+            method: 'POST',
+            body: formData
+        })
+            .then(response => response.text())
+            .then(data => {
+                alert("Activity Applied successfully!, we will send you an email if we can confirm this booking");
+                form.reset();
+            })
+            .catch(error => {
+                alert("There was an error saving the activity.");
+                console.error(error);
+            });
     }
-}
 
 async function postFormData(url, formData) {
     const plainFormData = Object.fromEntries(formData.entries());
     console.log(plainFormData);
-    const chosenEl = ddSelectActivity.selectedIndex;
-    const line = ddSelectTime[chosenEl];
-    plainFormData.activity = `<line className="activity">${line}</line>`;
+    const line = ddSelectActivity.options[ddSelectActivity.selectedIndex].text;
+    const time = ddSelectTime.options[ddSelectTime.selectedIndex].text;
+    plainFormData.activity = line;
+    plainFormData.timeslot = time;
     const formDataJsonString = JSON.stringify(plainFormData);
 
     const fetchOptions = {
@@ -87,7 +90,6 @@ async function postFormData(url, formData) {
         body: formDataJsonString
     };
     const response = await fetch(url, fetchOptions);
-
     if (!response.ok) {
         const errorMessage = await response.text();
         throw new Error(errorMessage);
@@ -103,18 +105,13 @@ function fetchAny(url) {
     //den laver response body til json. Response kan hedde hvad som helst
 }
 
-const postActivityRequest = {
-    method: "POST",
-    headers: {
-        "content-type": "application/json"
-    },
-    body: body
-};
 
 function postActivity(activity) {
-    body = JSON.stringify(activity);
-    console.log(body);
-    postActivityRequest.body = body;
+    const postActivityRequest = {
+        method: "POST",
+        headers: {"content-type": "application/json"},
+        body: JSON.stringify(activity)
+    };
     fetch(urlActivity, postActivityRequest)
         .then(response => {
             if (!response.ok) {
@@ -125,13 +122,11 @@ function postActivity(activity) {
         .catch(error => console.error("Error posting activity:", error));
 }
 
-
 function actionPostAllActivity() {
     if (activityList.length > 0) {
         console.log("Posting Activity List:");
-        activityList.push(postActivity);
+        activityList.forEach(postActivity)
     } else {
         console.log("No activities to post.");
     }
 }
-loadActivityTime()
