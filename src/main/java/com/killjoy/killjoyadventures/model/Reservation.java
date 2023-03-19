@@ -25,4 +25,9 @@ public class Reservation {
     @ManyToOne
     @JoinColumn(name = "customerId", referencedColumnName = "customerId")
     private Customer customer;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "activityId", referencedColumnName = "activityId", nullable = false) //res skal have act
+    private Activity activity;
+
 }

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+
+</head>
+<body>
+
+<label>Vælg aktivitet</label>
+<br>
+<select id="ddSelectActivity">
+  <option value="" selected="data-default" disabled="true">Aktiviteter</option>
+  <!--selected default gør at den står først og disabled gør at brugeren ikke kan vælge den
+  Tænk dog over om en dropdown SKAL vælges eller om der skal være et tom felt som kan submittes
+  skal der overhoved være en placeholder-->
+</select>
+
+<h2>Indsæt aktivitet</h2>
+
+<div> <!--at bruge action er gammeldags måde at inludere url-->
+  <form action="http://localhost:8080/activity" method="post" id="formActivity">
+    <div>
+      <label for="inpCode">Id</label>
+      <input
+              type="text"
+              name="activityId"
+              class="inputfield"
+              placeholder="eks. 0003"
+              id="inpCode"> <!--name bruger vi i js-->
+    </div>
+    <!--det vi slås mest med, at putte en foreign key på et child objekt, sætte region på kommune-->
+    <!--<div>
+        <select id="ddRegioner"></select>
+    </div>
+    -->
+    <button type="submit" title="Gem" id="submit">Opret</button>
+  </form> <!--man bør kunne sende formen direkte uden js men muligvis virker det ikke fordi den ikke sender det som json-->
+
+</div>
+
+<script src="../js/fetchActivity.js"></script>
+<script src="../js/formActivity.js"></script>
+
+</body>
+</html>
