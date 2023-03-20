@@ -1,32 +1,30 @@
 package com.killjoy.killjoyadventures.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.HashSet;
-import java.util.Set;
+import org.jetbrains.annotations.NotNull;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 public class Reservation {
-    @Id
-    @Column(length = 4)
-    private String reservationId;
-
-    @ManyToOne
+    @SequenceGenerator(name = "reservationGen",
+        initialValue = 40, allocationSize = 4)
+    @Id @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "reservationGen")    @Column(length = 4)
+    private Integer reservationId;
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "timeslotId", referencedColumnName = "timeslotId")
     private Timeslot timeslot;
-
-    @ManyToOne
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "customerId", referencedColumnName = "customerId")
     private Customer customer;
-
-    @ManyToOne(fetch = FetchType.EAGER)
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "activityId", referencedColumnName = "activityId", nullable = false) //res skal have act
     private Activity activity;
 

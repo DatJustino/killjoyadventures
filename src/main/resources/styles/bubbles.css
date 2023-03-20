@@ -1,0 +1,60 @@
+/*video: https://www.youtube.com/watch?v=wuUSVEcK-kM&ab_channel=OnlineTutorials*/
+.logo{
+    position: relative;
+    text-align: center;
+    z-index: -1;
+    margin: auto;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    min-height: 100vh;
+    background: #0c192c;
+}
+.container{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+.bubbles{
+    position: relative;
+    display: flex;
+    z-index: 2; /*added*/
+}
+.bubbles span {
+    position: relative;
+    aspect-ratio : 1 / 1;
+    width: 20%; /*30px*/
+    background: #4fc3dc;
+    margin: 0 4px;
+    border-radius: 100%;
+    box-shadow: 0 0 0 6px #4fc3dc44,
+    0 0 50px #4fc3dc,
+    0 0 100px #4fc3dc;
+    animation: animate 15s linear infinite;
+    animation-duration: calc(180s / var(--i));
+}
+.bubbles span:nth-child(even){
+    background: #ff2d75;
+    box-shadow: 0 0 0 6px #ff2d7544,
+    0 0 50px #ff2d75,
+    0 0 100px #ff2d75
+}
+
+@keyframes animate{
+    0%{transform: translateY(100vh) scale(0);}
+    100%{transform: translateY(-10vh) scale(1);}
+}
+/*here it is using (inline variables) like in the example (--i:number),
+how does that work? By controlling the tag by numbers like a class, how is that?
+By animation-duration dividing the number of seconds by the number, the speed of
+the tag will be the result of the division, for example: 120s / 1=120s This means
+that the tag will move from bottom to top within 120s = 2min and this of course
+will take time, but if you divide 120s / 30=4s This will only take 4s.
+This is simply the idea of the genius project, and this is what the code
+does exactly, and this calculation only works using the calculator calc, like in
+the example calc (120 / var(--i) ), */

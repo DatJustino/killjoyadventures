@@ -1,3 +1,4 @@
+/*
 package com.killjoy.killjoyadventures.controller;
 
 import com.killjoy.killjoyadventures.model.Activity;
@@ -26,11 +27,18 @@ public class ActivityController {
     public Activity getActivity(@PathVariable String id){
         return activityRepo.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
+
+    @GetMapping("/activity")
+    public List<Activity> getActivity(){
+        return activityRepo.findAll();
+    }
+
     @PostMapping("/activity")
     @ResponseStatus(HttpStatus.CREATED)
     public Activity addActivity(@RequestBody Activity activity){
         System.out.println(activity);
         return activityRepo.save(activity); //hvor returneres den til?
+        // DB, men det kan den ikke lige nu, da den mangler tid.
     }
     //post til ny, put til opdatering
 
@@ -45,4 +53,4 @@ public class ActivityController {
         }
     } //erik kalder det skrammelkode fordi der er mange linjer. Heller en linje hvis man kan
 } //virker ikke med at opdatere id i postman fordi man åbenbart ikke bare lige kan opdatere id'er
-//men man kan gøre som jeg gør for at opdatere attributter, men ikke id
+//men man kan gøre som jeg gør for at opdatere attributter, men ikke id*/

@@ -1,13 +1,11 @@
 package com.killjoy.killjoyadventures.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -17,11 +15,20 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 public class Customer {
-    @Id
-    @Column(length = 4)
-    private String customerId;
+  @SequenceGenerator(name = "customerGen",
+      initialValue = 20, allocationSize = 4)
+  @Id
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "customerGen")
+  @Column(length = 4)
+  private Integer customerId;
 
-    @OneToMany(mappedBy = "customer")
-    @JsonBackReference
-    Set<Reservation> reservations = new HashSet<>();
+  @Column(nullable = false)
+  private String customerName;
+  @NotNull
+  @Column(nullable = false, unique = true)
+  private String customerEmail;
+
+  @OneToMany(mappedBy = "customer")
+  @JsonBackReference
+  Set<Reservation> reservations = new HashSet<>();
 }

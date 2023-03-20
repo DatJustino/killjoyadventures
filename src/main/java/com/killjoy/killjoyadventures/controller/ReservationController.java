@@ -1,7 +1,7 @@
 package com.killjoy.killjoyadventures.controller;
 
 import com.killjoy.killjoyadventures.model.Reservation;
-import com.killjoy.killjoyadventures.repositories.ReservationRepo;
+import com.killjoy.killjoyadventures.repository.ReservationRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

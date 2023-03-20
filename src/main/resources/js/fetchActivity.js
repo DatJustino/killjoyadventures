@@ -1,8 +1,7 @@
 console.log("er i js");
-const urlActivity = "http://localhost:8080/activity"; // skal hente fra egen database, kalder GetMapping endpoint her
 
+const urlActivity = "http://localhost:8080/activities"; // skal hente fra egen database, kalder GetMapping endpoint her
 let activityList = [];
-let body = {};
 
 
 window.addEventListener("load", loadActivity); //ændret til document DOMContentLoaded
@@ -12,10 +11,9 @@ const ddSelectActivity = document.getElementById("ddSelectActivity");
 async function loadActivity() {
     activityList = await fetchAny(urlActivity);
     console.log(activityList);
-    activityList.forEach(fillActivityDropDown);
+  //  activityList.forEach(fillActivityDropDown);
 }
-
-
+/*
 function fillActivityDropDown(activity) {
     const el = document.createElement("option");
     console.log(el);
@@ -23,9 +21,7 @@ function fillActivityDropDown(activity) {
     el.textContent = activity.activityName;
     console.log(activity.activityName);
     ddSelectActivity.appendChild(el);
-}
-
-
+}*/
 
 function fetchAny(url) {
     console.log(url);
@@ -35,7 +31,7 @@ function fetchAny(url) {
     //den laver response body til json. Response kan hedde hvad som helst
 }
 
-
+/* DEPRECATED FOR NOW
 function postActivity(activity) {
     const postActivityRequest = {
         method: "POST",
@@ -59,4 +55,4 @@ function actionPostAllActivity() {
     } else {
         console.log("No activities to post.");
     }
-}
+}*/
