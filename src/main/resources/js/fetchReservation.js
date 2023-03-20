@@ -1,6 +1,6 @@
 console.log("er i fetchReservation")
 
-const urlActivityTime = "http://localhost:8080/activitytime";
+const urlActivityTime = "http://localhost:8080/admin/activitytime";
 let activityTimeList = [];
 const ddSelectTime = document.getElementById("ddSelectTime");
 window.addEventListener("load", loadActivityTime); //ændret til document DOMContentLoaded

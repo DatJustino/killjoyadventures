@@ -17,9 +17,7 @@ import java.util.Set;
 @NoArgsConstructor
 public class Employee {
 
-    @SequenceGenerator(name = "employeeGen",
-        initialValue = 30, allocationSize = 4)
-    @Id @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "employeeGen")
+    @Id
     @Column(length = 4)
     private Integer employeeId;
     @NotNull

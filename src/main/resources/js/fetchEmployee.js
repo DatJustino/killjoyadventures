@@ -1,17 +1,18 @@
 console.log("er i FetchEmplyee");
 
-const urlEmployee = "http://localhost:8080/employees"; // skal hente fra egen database, kalder GetMapping endpoint her
+const urlEmployee = "http://localhost:8080/admin/employees"; // skal hente fra egen database, kalder GetMapping endpoint her
 let employeeList = [];
 
 
-window.addEventListener("load", loadActivity); //ændret til document DOMContentLoaded
-
+document.addEventListener('DOMContentLoaded', loadEmployee);
 const ddSelectEmployee = document.getElementById("ddSelectEmployee");
 
-async function loadActivity() {
+async function loadEmployee() {
     employeeList = await fetchAny(urlEmployee);
     console.log(employeeList);
-  //  employeeList.forEach(fillActivityDropDown);
+/*
+ employeeList.forEach(fillActivityDropDown);
+*/
 }
 
 /*function fillActivityDropDown(employee) {

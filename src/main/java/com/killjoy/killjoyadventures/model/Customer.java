@@ -15,8 +15,7 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 public class Customer {
-  @SequenceGenerator(name = "customerGen",
-      initialValue = 20, allocationSize = 4)
+
   @Id
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "customerGen")
   @Column(length = 4)

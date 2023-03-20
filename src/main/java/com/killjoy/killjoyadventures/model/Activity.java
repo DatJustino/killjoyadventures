@@ -15,9 +15,8 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 public class Activity {
-    @SequenceGenerator(name = "activityGen",
-        initialValue = 10, allocationSize = 4)
-    @Id @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "activityGen")    @Column(length = 4)
+    @Id
+    @Column(length = 4)
     private int activityId;
     @NotNull
     @Column(nullable = false, unique = true)

@@ -10,8 +10,9 @@ import java.util.Optional;
 
 @Service
 public class ActivityService {
-  private final ActivityRepo activityRepo;
   @Autowired
+  private final ActivityRepo activityRepo;
+
   public ActivityService(ActivityRepo activityRepo) {
     this.activityRepo = activityRepo;
   }

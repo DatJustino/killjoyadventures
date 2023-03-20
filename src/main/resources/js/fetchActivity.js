@@ -1,10 +1,10 @@
 console.log("er i js");
 
-const urlActivity = "http://localhost:8080/activities"; // skal hente fra egen database, kalder GetMapping endpoint her
+const urlActivity = "http://localhost:8080/admin/activities"; // skal hente fra egen database, kalder GetMapping endpoint her
 let activityList = [];
 
 
-window.addEventListener("load", loadActivity); //ændret til document DOMContentLoaded
+document.addEventListener('DOMContentLoaded', loadActivity);
 
 const ddSelectActivity = document.getElementById("ddSelectActivity");
 
@@ -12,6 +12,13 @@ async function loadActivity() {
     activityList = await fetchAny(urlActivity);
     console.log(activityList);
   //  activityList.forEach(fillActivityDropDown);
+}
+function fetchAny(url) {
+    console.log(url);
+    return fetch(url).then((response) => response.json());
+    //Fetch sender http get request til url og får promise objekt. Then kaldes anonym funktion
+    //som er en callback funktion fordi der går tid før den giver response
+    //den laver response body til json. Response kan hedde hvad som helst
 }
 /*
 function fillActivityDropDown(activity) {
@@ -23,13 +30,7 @@ function fillActivityDropDown(activity) {
     ddSelectActivity.appendChild(el);
 }*/
 
-function fetchAny(url) {
-    console.log(url);
-    return fetch(url).then((response) => response.json());
-    //Fetch sender http get request til url og får promise objekt. Then kaldes anonym funktion
-    //som er en callback funktion fordi der går tid før den giver response
-    //den laver response body til json. Response kan hedde hvad som helst
-}
+
 
 /* DEPRECATED FOR NOW
 function postActivity(activity) {

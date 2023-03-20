@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <title>Title</title>
 
+
 </head>
 <body>
-
 <!--<label>Vælg aktivitet</label>  Denne er vel bare for god ordens skyld så kopipaste er nemmere? Den giver nemlig ikke mening :P
 <br>
 <select id="ddSelectActivity">
@@ -15,11 +15,10 @@
   Tænk dog over om en dropdown SKAL vælges eller om der skal være et tom felt som kan submittes
   skal der overhoved være en placeholder&ndash;&gt;
 </select>-->
-
 <h2>Indsæt aktivitet</h2>
 
 <div> <!--at bruge action er gammeldags måde at inludere url-->
-  <form action="http://localhost:8080/activity" method="post" id="formActivity">
+  <form action="http://localhost:8080/admin/activity" method="post" id="formActivity">
     <div>
       <label for="inpActivityName">Name</label>
       <input
@@ -41,7 +40,7 @@
 <h2>Indsæt Employee</h2>
 
 <div> <!--at bruge action er gammeldags måde at inludere url-->
-  <form action="http://localhost:8080/employee" method="post" id="formEmployee">
+  <form action="http://localhost:8080/admin/employee" method="post" id="formEmployee">
     <div>
       <label for="inpEmployeeName">Name</label>
       <input
@@ -56,12 +55,13 @@
         <select id="ddRegioner"></select>
     </div>
     -->
-    <button type="submit" title="Gem" id="submit">Opret</button>
+    <button type="submit" title="Gem" id="submit2">Opret</button>
   </form> <!--man bør kunne sende formen direkte uden js men muligvis virker det ikke fordi den ikke sender det som json-->
 </div>
 
 
-
+<script src="../js/formReservation.js"></script>
+<script src="../js/fetchReservation.js"></script>
 <script src="../js/fetchActivity.js"></script>
 <script src="../js/fetchEmployee.js"></script>
 <script src="../js/formEmployee.js"></script>

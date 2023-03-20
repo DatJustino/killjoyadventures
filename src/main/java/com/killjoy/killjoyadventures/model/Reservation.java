@@ -11,9 +11,8 @@ import org.jetbrains.annotations.NotNull;
 @Setter
 @NoArgsConstructor
 public class Reservation {
-    @SequenceGenerator(name = "reservationGen",
-        initialValue = 40, allocationSize = 4)
-    @Id @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "reservationGen")    @Column(length = 4)
+    @Id
+    @Column(length = 4)
     private Integer reservationId;
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

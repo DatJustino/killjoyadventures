@@ -5,6 +5,7 @@ import com.killjoy.killjoyadventures.model.Activity;
 import com.killjoy.killjoyadventures.model.Employee;
 import com.killjoy.killjoyadventures.service.ActivityService;
 import com.killjoy.killjoyadventures.service.EmployeeService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,10 +15,11 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/admin")
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+@CrossOrigin(origins = "*")
 public class AdminController {
-
+  @Autowired
   private final ActivityService activityService;
+  @Autowired
   private final EmployeeService employeeService;
 
   public AdminController(ActivityService activityService, EmployeeService employeeService) {
@@ -25,13 +27,17 @@ public class AdminController {
     this.employeeService = employeeService;
   }
 
+  @GetMapping("/")
+  public String index(){
+    return ()
+  }
   // Activity APIs
   @GetMapping("/activities")
   public List<Activity> getAllActivities() {
     return activityService.getAll();
   }
 
-  @GetMapping("/activities/{id}")
+  @GetMapping("/activity/{id}")
   public ResponseEntity<Activity> getActivityById(@PathVariable String id) {
     Optional<Activity> optionalActivity = Optional.ofNullable(activityService.getActivityById(id));
     if (optionalActivity.isPresent()) {
@@ -43,13 +49,13 @@ public class AdminController {
     }
   }
 
-  @PostMapping("/activities")
+  @PostMapping("/activity")
   public ResponseEntity<Activity> createActivity(@RequestBody Activity activity) {
     Activity savedActivity = activityService.createActivity(activity);
     return ResponseEntity.status(HttpStatus.CREATED).body(savedActivity);
   }
 
-  @PutMapping("/activities/{id}")
+  @PutMapping("/activity/{id}")
   public ResponseEntity<Activity> updateActivityById(@PathVariable String id, @RequestBody Activity activityRequest) {
     Activity activity = activityService.getActivityById(id);
     if (activity == null) {
@@ -64,7 +70,7 @@ public class AdminController {
     return ResponseEntity.ok(updatedActivity);
   }
 
-  @DeleteMapping("/activities/{id}")
+  @DeleteMapping("/activity/{id}")
   public ResponseEntity<Void> deleteActivityById(@PathVariable String id) {
     activityService.deleteActivity(id);
     return ResponseEntity.noContent().build();
@@ -76,7 +82,7 @@ public class AdminController {
     return employeeService.getAllEmployee();
   }
 
-  @GetMapping("/employees/{id}")
+  @GetMapping("/employee/{id}")
   public ResponseEntity<Employee> getEmployeeById(@PathVariable String id) {
     Employee employee = employeeService.getEmployeeById(id);
     if (employee == null) {
@@ -85,7 +91,7 @@ public class AdminController {
     return ResponseEntity.ok(employee);
   }
 
-  @PostMapping("/employees")
+  @PostMapping("/employee")
   public ResponseEntity<Employee> createEmployee(@RequestBody Employee employee) {
     Employee savedEmployee = employeeService.createEmployee(employee);
     return ResponseEntity.status(HttpStatus.CREATED).body(savedEmployee);
@@ -105,8 +111,8 @@ public class AdminController {
     }
   }
 
-  @DeleteMapping("/employees/{id}")
-  public ResponseEntity<Void> deleteEmployeeById(@PathVariable String id) {
+  @DeleteMapping("/employee/{id}")
+  public ResponseEntity<Employee> deleteEmployeeById(@PathVariable String id) {
     employeeService.deleteEmployee(id);
     return ResponseEntity.noContent().build();
   }
