@@ -17,7 +17,7 @@ public class EmployeeService {
   public List<Employee> getAllEmployee() {
     return employeeRepo.findAll();
   }
-  public Employee getEmployeeById(String id) {
+  public Employee getEmployeeById(Integer id) {
     return employeeRepo.findById(id)
         .orElseThrow(() -> new ResourceNotFoundException("Employee", id));
   }
@@ -26,14 +26,14 @@ public class EmployeeService {
   }
 
   //TODO: Needs better paramenter and form in html
-  public Employee updateEmployee(String id, Employee employee) {
+  public Employee updateEmployee(Integer id, Employee employee) {
     Employee existingCustomer = employeeRepo.findById(id)
         .orElseThrow(() -> new ResourceNotFoundException("Employee", id));
     existingCustomer.setName(employee.getName());
     existingCustomer.setEmail(employee.getEmail());
     return employeeRepo.save(existingCustomer);
   }
-  public void deleteEmployee(String id) {
+  public void deleteEmployee(Integer id) {
     if (!employeeRepo.existsById(id)) {
       throw new ResourceNotFoundException("Employee", id);
     }

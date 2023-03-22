@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin
 @RequestMapping("/customers")
 public class CustomerController {
 
@@ -24,7 +24,7 @@ public class CustomerController {
   }
 
   @GetMapping("/customer/{id}")
-  public ResponseEntity<Customer> getCustomerById(@PathVariable String id) {
+  public ResponseEntity<Customer> getCustomerById(@PathVariable Integer id) {
     Customer customer = customerService.getCustomerById(id);
     return new ResponseEntity<>(customer, HttpStatus.OK);
   }
@@ -36,13 +36,13 @@ public class CustomerController {
   }
 
   @PutMapping("/customer/{id}")
-  public ResponseEntity<Customer> updateCustomer(@PathVariable String id, @RequestBody Customer customer) {
+  public ResponseEntity<Customer> updateCustomer(@PathVariable Integer id, @RequestBody Customer customer) {
     Customer updatedCustomer = customerService.updateCustomer(id, customer);
     return new ResponseEntity<>(updatedCustomer, HttpStatus.OK);
   }
 
   @DeleteMapping("/customer/{id}")
-  public ResponseEntity<Void> deleteCustomer(@PathVariable String id) {
+  public ResponseEntity<Void> deleteCustomer(@PathVariable Integer id) {
     customerService.deleteCustomer(id);
     return new ResponseEntity<>(HttpStatus.NO_CONTENT);
   }

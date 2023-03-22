@@ -16,7 +16,7 @@ public class ReservationService {
     this.reservationRepo = reservationRepo;
   }
 
-  public Reservation getReservationById(String id) {
+  public Reservation getReservationById(Integer id) {
     return reservationRepo.findById(id)
         .orElseThrow(() -> new ResourceNotFoundException("Reservation", id));
   }
@@ -25,7 +25,7 @@ public class ReservationService {
     return reservationRepo.save(reservation);
   }
 
-  public Reservation updateReservation(String id, Reservation reservation) {
+  public Reservation updateReservation(Integer id, Reservation reservation) {
     Reservation existingReservation = reservationRepo.findById(id)
         .orElseThrow(() -> new ResourceNotFoundException("Reservation", id));
     existingReservation.setTimeslot(reservation.getTimeslot());
@@ -34,7 +34,7 @@ public class ReservationService {
     return reservationRepo.save(existingReservation);
   }
 
-  public void deleteReservation(String id) {
+  public void deleteReservation(Integer id) {
     if (!reservationRepo.existsById(id)) {
       throw new ResourceNotFoundException("Reservation", id);
     }

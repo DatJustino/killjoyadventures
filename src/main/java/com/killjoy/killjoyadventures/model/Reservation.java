@@ -13,6 +13,7 @@ import org.jetbrains.annotations.NotNull;
 public class Reservation {
     @Id
     @Column(length = 4)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer reservationId;
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

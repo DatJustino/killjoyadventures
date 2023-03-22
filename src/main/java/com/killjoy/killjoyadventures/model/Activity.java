@@ -16,8 +16,9 @@ import java.util.Set;
 @NoArgsConstructor
 public class Activity {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // This line configures the ID to be auto-generated
     @Column(length = 4)
-    private int activityId;
+    private Integer activityId;
     @NotNull
     @Column(nullable = false, unique = true)
     private String activityName;

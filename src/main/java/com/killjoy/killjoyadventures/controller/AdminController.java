@@ -13,9 +13,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/admin")
-@CrossOrigin(origins = "*")
 public class AdminController {
   @Autowired
   private final ActivityService activityService;
@@ -29,16 +30,16 @@ public class AdminController {
 
   @GetMapping("/")
   public String index(){
-    return ()
+    return ("/");
   }
-  // Activity APIs
   @GetMapping("/activities")
   public List<Activity> getAllActivities() {
+    System.out.println(activityService.getAll());
     return activityService.getAll();
   }
 
   @GetMapping("/activity/{id}")
-  public ResponseEntity<Activity> getActivityById(@PathVariable String id) {
+  public ResponseEntity<Activity> getActivityById(@PathVariable Integer id) {
     Optional<Activity> optionalActivity = Optional.ofNullable(activityService.getActivityById(id));
     if (optionalActivity.isPresent()) {
       Activity activity = optionalActivity.get();
@@ -52,11 +53,12 @@ public class AdminController {
   @PostMapping("/activity")
   public ResponseEntity<Activity> createActivity(@RequestBody Activity activity) {
     Activity savedActivity = activityService.createActivity(activity);
+    System.out.println(savedActivity);
     return ResponseEntity.status(HttpStatus.CREATED).body(savedActivity);
   }
 
   @PutMapping("/activity/{id}")
-  public ResponseEntity<Activity> updateActivityById(@PathVariable String id, @RequestBody Activity activityRequest) {
+  public ResponseEntity<Activity> updateActivityById(@PathVariable Integer id, @RequestBody Activity activityRequest) {
     Activity activity = activityService.getActivityById(id);
     if (activity == null) {
       throw new ResourceNotFoundException("Activity", id);
@@ -71,7 +73,7 @@ public class AdminController {
   }
 
   @DeleteMapping("/activity/{id}")
-  public ResponseEntity<Void> deleteActivityById(@PathVariable String id) {
+  public ResponseEntity<Void> deleteActivityById(@PathVariable Integer id) {
     activityService.deleteActivity(id);
     return ResponseEntity.noContent().build();
   }
@@ -83,7 +85,7 @@ public class AdminController {
   }
 
   @GetMapping("/employee/{id}")
-  public ResponseEntity<Employee> getEmployeeById(@PathVariable String id) {
+  public ResponseEntity<Employee> getEmployeeById(@PathVariable Integer id) {
     Employee employee = employeeService.getEmployeeById(id);
     if (employee == null) {
       throw new ResourceNotFoundException("Employee", id);
@@ -98,7 +100,7 @@ public class AdminController {
   }
 
   @PutMapping("/employees/{id}")
-  public ResponseEntity<Employee> updateEmployeeById(@PathVariable String id, @RequestBody Employee employeeRequest) {
+  public ResponseEntity<Employee> updateEmployeeById(@PathVariable Integer id, @RequestBody Employee employeeRequest) {
     Employee employee = employeeService.getEmployeeById(id);
     if (employee == null) {
       throw new ResourceNotFoundException("employee", id);
@@ -112,7 +114,7 @@ public class AdminController {
   }
 
   @DeleteMapping("/employee/{id}")
-  public ResponseEntity<Employee> deleteEmployeeById(@PathVariable String id) {
+  public ResponseEntity<Employee> deleteEmployeeById(@PathVariable Integer id) {
     employeeService.deleteEmployee(id);
     return ResponseEntity.noContent().build();
   }

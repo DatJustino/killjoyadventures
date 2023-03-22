@@ -19,23 +19,23 @@ public class ActivityService {
   public List<Activity> getAll() {
     return activityRepo.findAll();
   }
-  public Activity getActivityById(String id) {
+  public Activity getActivityById(Integer id) {
     return activityRepo.findById(id)
         .orElseThrow(() -> new ResourceNotFoundException("Activity", id));
   }
   public Activity createActivity(Activity activity) {
     return activityRepo.save(activity);
   }
-  public Activity updateActivity(String id, Activity activity) {
+  public Activity updateActivity(Integer id, Activity activity) {
     Optional<Activity> existingActivity = activityRepo.findById(id);
     if (existingActivity.isPresent()) {
-      activity.setActivityId(Integer.parseInt(id));
+      activity.setActivityId(id);
       return activityRepo.save(activity);
     } else {
       throw new ResourceNotFoundException("Activity", id);
     }
   }
-  public void deleteActivity(String id) {
+  public void deleteActivity(Integer id) {
     if (activityRepo.existsById(id)) {
       activityRepo.deleteById(id);
     } else {

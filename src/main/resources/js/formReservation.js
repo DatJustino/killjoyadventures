@@ -19,22 +19,21 @@ async function handleFormSubmit(event) {
     console.log(url)
     console.log(form === formReservation)
     try {
-        const formData = new FormData(form)
-        console.log(formData)
-        const responseData = await postFormData(url, formData)
-
-        // når vi har oprettet sognet
-        alert(formData.get('navn') + ' er oprettet');
-
-        //const homeUrl = "reservation.html"; //husk fjern udkommentering
-        //window.location.replace(homeUrl); //man kan ikke gøre det her indeni en submit button
-        //window.location.href = homeUrl;
-
+        const formData = new FormData(form);
+        const responseData = await postFormData(url, formData);
+        // Use the responseData object to handle the response
+        if (responseData) {
+            alert(formData.get("navn") + " er oprettet");
+            // Redirect to the desired page
+            const homeUrl = "/admin/activities.html";
+            window.location.href = homeUrl;
+        }
     } catch (error) {
-        alert(error.message)
-        console.log(error)
+        alert(error.message);
+        console.log(error);
     }
 }
+
 
 async function postFormData(url, formData) {
     const plainFormData = Object.fromEntries(formData.entries())

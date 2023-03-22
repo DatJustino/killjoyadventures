@@ -21,7 +21,7 @@ public class CustomerService {
     return customerRepo.findAll();
   }
 
-  public Customer getCustomerById(String id) {
+  public Customer getCustomerById(Integer id) {
     return customerRepo.findById(id)
         .orElseThrow(() -> new ResourceNotFoundException("Customer", id));
   }
@@ -31,7 +31,7 @@ public class CustomerService {
   }
 
   //TODO: Needs better paramenter and form in html
-  public Customer updateCustomer(String id, Customer customer) {
+  public Customer updateCustomer(Integer id, Customer customer) {
     Customer existingCustomer = customerRepo.findById(id)
         .orElseThrow(() -> new ResourceNotFoundException("Customer", id));
     existingCustomer.setCustomerName(customer.getCustomerName());
@@ -39,7 +39,7 @@ public class CustomerService {
     return customerRepo.save(existingCustomer);
   }
 
-  public void deleteCustomer(String id) {
+  public void deleteCustomer(Integer id) {
     customerRepo.deleteById(id);
   }
 }

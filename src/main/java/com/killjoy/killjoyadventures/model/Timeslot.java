@@ -20,7 +20,7 @@ public class Timeslot {
 
     @Id
     @Column(length = 4)
-    private int timeslotId;
+    private Integer timeslotId;
 
     @JsonFormat(pattern = "HH:mm")
     @Column(name = "timeSlotStart")

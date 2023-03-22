@@ -19,12 +19,13 @@ public class Employee {
 
     @Id
     @Column(length = 4)
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Integer employeeId;
-    @NotNull
-    @Column(nullable = false)
+    //@NotNull
+    @Column(/*nullable = false*/)
     private String name;
-    @NotNull
-    @Column(nullable = false, unique = true)
+    //@NotNull paused while testing.
+    @Column(/*nullable = false,*/ unique = true)
     private String email;
     @JsonIgnore
     @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)

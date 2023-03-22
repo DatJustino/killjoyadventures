@@ -4,6 +4,7 @@ import com.killjoy.killjoyadventures.exception.ResourceNotFoundException;
 import com.killjoy.killjoyadventures.model.Timeslot;
 import com.killjoy.killjoyadventures.repository.TimeslotRepo;
 import jakarta.transaction.Transactional;
+import org.apache.catalina.SessionIdGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,12 +25,12 @@ public class TimeslotService {
     return timeslotRepo.findAll();
   }
 
-  public Timeslot getTimeSlotById(int id) {
-    Optional<Timeslot> timeslot = timeslotRepo.findById(String.valueOf(id));
+  public Timeslot getTimeSlotById(Integer id) {
+    Optional<Timeslot> timeslot = timeslotRepo.findById(id);
     if (timeslot.isPresent()) {
       return timeslot.get();
     } else {
-      throw new ResourceNotFoundException("Timeslot", String.valueOf(id));
+      throw new ResourceNotFoundException("Timeslot", id);
     }
   }
 
@@ -37,8 +38,8 @@ public class TimeslotService {
     return timeslotRepo.save(timeslot);
   }
 
-  public Timeslot updateTimeSlot(int id, Timeslot timeslot) {
-    Optional<Timeslot> optionalTimeslot = timeslotRepo.findById(String.valueOf(id));
+  public Timeslot updateTimeSlot(Integer id, Timeslot timeslot) {
+    Optional<Timeslot> optionalTimeslot = timeslotRepo.findById(id);
     if (optionalTimeslot.isPresent()) {
       Timeslot timeslot1 = optionalTimeslot.get();
       timeslot.setTimeSlotStart(timeslot.getTimeSlotStart());
@@ -46,16 +47,16 @@ public class TimeslotService {
       timeslot.setEmployee(timeslot.getEmployee());
       return timeslotRepo.save(timeslot);
     } else {
-      throw new ResourceNotFoundException("Timeslot",String.valueOf(id));
+      throw new ResourceNotFoundException("Timeslot", id);
     }
   }
 
-  public void deleteTimeslot(int id) {
-    Optional<Timeslot> timeslot = timeslotRepo.findById(String.valueOf(id));
+  public void deleteTimeslot(Integer id) {
+    Optional<Timeslot> timeslot = timeslotRepo.findById(id);
     if (timeslot.isPresent()) {
-      timeslotRepo.deleteById(String.valueOf(id));
+      timeslotRepo.deleteById(id);
     } else {
-      throw new ResourceNotFoundException("Timeslot", String.valueOf(id));
+      throw new ResourceNotFoundException("Timeslot", id);
     }
   }
 }
