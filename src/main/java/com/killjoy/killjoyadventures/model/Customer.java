@@ -26,6 +26,8 @@ public class Customer {
   //@NotNull paused while testing.
   @Column(nullable = false, unique = true)
   private String customerEmail;
+  private String password;
+
 
   @OneToMany(mappedBy = "customer")
   @JsonBackReference

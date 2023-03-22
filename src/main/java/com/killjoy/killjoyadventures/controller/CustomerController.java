@@ -29,11 +29,17 @@ public class CustomerController {
     return new ResponseEntity<>(customer, HttpStatus.OK);
   }
 
-  @PostMapping("createcustomer")
+  @PostMapping("/register")
   public ResponseEntity<Customer> createCustomer(@RequestBody Customer customer) {
     Customer createdCustomer = customerService.createCustomer(customer);
     return new ResponseEntity<>(createdCustomer, HttpStatus.CREATED);
   }
+  @PostMapping("/login")
+  public ResponseEntity<Customer> login(@RequestBody Customer customer) {
+    Customer authenticatedCustomer = customerService.authenticateCustomer(customer);
+    return new ResponseEntity<>(authenticatedCustomer, HttpStatus.OK);
+  }
+
 
   @PutMapping("/customer/{id}")
   public ResponseEntity<Customer> updateCustomer(@PathVariable Integer id, @RequestBody Customer customer) {
