@@ -15,17 +15,14 @@ public class Reservation {
     @Column(length = 4)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer reservationId;
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "timeslotId", referencedColumnName = "timeslotId")
-    private Timeslot timeslot;
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "customerId", referencedColumnName = "customerId")
-    private Customer customer;
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "activityId", referencedColumnName = "activityId", nullable = false) //res skal have act
-    private Activity activity;
 
+    @NotNull
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "timeslotId", referencedColumnName = "timeslotId", nullable = false)
+    private Timeslot timeslot;
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "customerId", referencedColumnName = "customerId", nullable = false)
+    private Customer customer;
 }

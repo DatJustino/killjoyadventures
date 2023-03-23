@@ -29,7 +29,7 @@ public class Customer {
   private String password;
 
 
-  @OneToMany(mappedBy = "customer")
+  @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
   @JsonBackReference
   Set<Reservation> reservations = new HashSet<>();
 }

@@ -30,7 +30,6 @@ public class ReservationService {
         .orElseThrow(() -> new ResourceNotFoundException("Reservation", id));
     existingReservation.setTimeslot(reservation.getTimeslot());
     existingReservation.setCustomer(reservation.getCustomer());
-    existingReservation.setActivity(reservation.getActivity());
     return reservationRepo.save(existingReservation);
   }
 

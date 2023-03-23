@@ -1,8 +1,7 @@
-console.log("er i js");
+console.log("er i fetchActivity");
 
 const urlActivity = "http://localhost:8080/admin/activities"; // skal hente fra egen database, kalder GetMapping endpoint her
 let activityList = [];
-
 
 document.addEventListener('DOMContentLoaded', loadActivity);
 
@@ -10,7 +9,8 @@ const ddSelectActivity = document.getElementById("ddSelectActivity");
 
 async function loadActivity() {
     activityList = await fetchAny(urlActivity);
-    console.log(activityList);
+    actionCreateTable()
+    //console.log(activityList);
   //  activityList.forEach(fillActivityDropDown);
 }
 function fetchAny(url) {
